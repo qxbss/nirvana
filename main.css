@@ -1,0 +1,139 @@
+html,body {
+	margin: 0;
+	font-family: "Monument", sans-serif;
+	background: url(https://media.giphy.com/media/3oEduMhFrYvKk4giac/giphy.gif) no-repeat 50% 50%;
+	background-size: cover;
+	overflow-x: hidden;
+	overflow-y: hidden;
+}
+
+a {
+	text-decoration: none;
+}
+
+@font-face {
+  font-family: 'Monument';
+  src: url('MonumentExtended-Ultrabold.otf');
+  font-style: normal;
+  font-weight: normal;
+}
+
+.menu_item {
+	position: relative;
+	padding: 0 6vw;
+}
+
+.menu_item-link {
+	display: inline-block;
+	cursor: pointer;
+	position: relative;
+	-webkit-text-stroke:  1.5px #fff;
+	-webkit-text-fill-color: transparent;
+	color: transparent;
+	transition: opacity 0.4s;
+}
+
+.menu_item-link:before {
+	all: initial;
+	font-family: 'Monument';
+	counter-increment: menu;
+	position: absolute;
+	bottom: 60%;
+	pointer-events: none;
+}
+
+
+.menu_item-link:hover {
+	transition-duration: 0.1s;
+	opacity: 0;
+}
+
+.menu_item-img {
+	pointer-events: none;
+	position: absolute;
+	height: 50vh;
+	max-height: 400px;
+	opacity: 0;
+	left: 100%;
+	top: 50%;
+	transform: translate3d(calc(-100% - 6vw),-30%,0) translate3d(0, 20px, 0px);
+}
+
+
+.menu_item-link:hover + .menu_item-img {
+	opacity: 1;
+	transform: translate3d(calc(-100% - 6vw), -30%, 0) rotate3d(0, 0, 1, 4deg);
+	transition: all 0.4s;
+}
+
+.menu {
+	padding: 10vh 0 25vh;
+	--offset: 20vw;
+	--move-initial: calc(-25% +var(--offset));
+	--move-final:  cacl(-50% + var(--offset));
+	font-size: 6vw;
+}
+
+.marquee {
+	position: absolute;
+	top: 0;
+	left: 0;
+	overflow: hidden;
+	color: #FFf;
+	pointer-events: none;
+	mix-blend-mode: difference;
+}
+
+.marquee_inner {
+	width: fit-content;
+	display: flex;
+	position: relative;
+	animation: marquee 5s linear infinite;
+	opacity: 0;
+	transition: opacity 0.1s;
+}
+.menu_item-link:hover ~ .marquee .marquee_inner {
+	animation-play-state: running;
+	opacity: 1;
+	transition-duration: 0.4s;
+}
+
+.menu_item-link,
+.marquee span {
+	white-space: nowrap;
+	font-size: 6vw;
+	padding: 0 1vw;
+	line-height: 1.20;
+}
+
+.marquee span {
+	font-style: italic;
+}
+
+@keyframes marquee {
+	0% {
+		transform: translate3d(var(--move-initial), 0, 0);
+	}
+
+	100% {
+		transform: translate3d(var(--move-final)0, 0);
+	}
+}
+
+
+
+@media screen and (max-width: 600px) {
+		.menu_item-link,
+	.marquee span{
+	font-size: 9vw;
+	padding: 18px 1vw;
+	line-height: 1.8;
+}
+	.menu {
+		padding: 35vw 0 72vw;
+	}
+	.menu_item-img {
+		height: 35vh;
+		max-height: 250px;
+	}
+}
